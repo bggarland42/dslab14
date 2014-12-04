@@ -29,19 +29,32 @@ int main()
    int num_items = cds->size();
    cout << num_items << endl;
 
-   TableSortedList<CD>* slt = new TableSortedList<CD>(&CD::compare_items, &CD::compare_keys);
-
    //DO THIS
    //thoroughly test your table
-
-
-
+	
+	ListArrayIterator<CD>* iter = cds->iterator();
+	TableSortedList<CD>* tsl=new TableSortedList<CD>(&CD::compare_items,&CD::compare_keys);
+	while(iter->hasNext())
+	{
+		tsl->tableInsert(iter->next());
+	}
+	num_items=tsl->tableSize();
+	cout << num_items << endl;
+	ListDoublyLinkedIterator<CD>* ldli= tsl->iterator();
+	while(tsl->tableIsEmpty()==false)
+	{
+		CD* cD=ldli->next();
+		CD* cdD=tsl->tableRetrieve(cD->getKey());
+		cdD->displayCD();
+		tsl->tableRemove(cD->getKey());
+	}
+	
 
 
 
 
    deleteCDs(cds);
    delete cds;
-   delete slt;
+   delete tsl;
    return 0;
 }

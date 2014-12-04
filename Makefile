@@ -1,8 +1,8 @@
 AutomatedMakefile = am
 CC = g++
 
-FILES = 
-EXECUTABLE = 
+FILES = TableDriver.o
+EXECUTABLE = Lab14.exe
 
 PROJECT_PATH = $(PROJECT_DIR)
 
@@ -18,5 +18,5 @@ all: Project
 Project: 		$(FILES)
 			$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-
-
+TableDriver.o:	TableSortedList.h TableDriver.cpp
+				$(COMPILE) TableDriver.cpp
